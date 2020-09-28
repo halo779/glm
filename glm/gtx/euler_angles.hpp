@@ -117,6 +117,14 @@ namespace glm
         T const& t2,
         T const& t3);
 
+	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Z * Y) * X.
+    /// @see gtx_euler_angles
+    template<typename T>
+    GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleXYZ(
+        T const& a1,
+        T const& a2,
+        T const& a3);
+
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Y * X * Z).
 	/// @see gtx_euler_angles
 	template<typename T>

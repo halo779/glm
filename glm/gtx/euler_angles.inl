@@ -181,6 +181,45 @@ namespace glm
 		return eulerAngleZ(angleZ) * eulerAngleY(angleY);
 	}
 
+	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Z * Y) * X.
+    /// @see gtx_euler_angles
+	template<typename T>
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> eulerAngleXZXY
+	(
+		T const& a1,
+		T const& a2,
+		T const& a3
+	)
+	{
+		T s1 = glm::sin(a1);
+		T c1 = glm::cos(a1);
+		
+		T s2 = glm::sin(a2);
+		T c2 = glm::cos(a2);
+
+		T s3 = glm::sin(a3);
+		T c3 = glm::cos(a3);
+
+		mat<4, 4, T, defaultp> Result;
+		Result[0][0] = c2 * c3;
+		Result[0][1] = s1 * s2*c3 + c1 * -s3;
+		Result[0][2] = (c1*s2*c3 + -s1 * -s3);
+		Result[0][3] = static_cast<T>(0);
+		Result[1][0] = c2 * s3;
+		Result[1][1] = s1 * s2*s3 + c1 * c3;
+		Result[1][2] = (c1*s2*s3 + -s1 * c3);
+		Result[1][3] = static_cast<T>(0);
+		Result[2][0] = -s2;
+		Result[2][1] = s1 * c2;
+		Result[2][2] = c1 * c2;
+		Result[2][3] = static_cast<T>(0);
+		Result[3][0] = static_cast<T>(0);
+		Result[3][1] = static_cast<T>(0);
+		Result[3][2] = static_cast<T>(0);
+		Result[3][3] = static_cast<T>(1);
+		return Result;
+	}
+
     template<typename T>
     GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> eulerAngleXYZ
     (
